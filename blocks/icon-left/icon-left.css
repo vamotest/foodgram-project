@@ -1,0 +1,8 @@
+.icon-left {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-image: url("../../images/left.svg");
+}

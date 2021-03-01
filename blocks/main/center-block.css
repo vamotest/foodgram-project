@@ -1,0 +1,20 @@
+.custom-center-block {
+  display: block;
+}
+
+.custom-text-block {
+  height: 10em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.custom-button-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

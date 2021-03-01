@@ -1,0 +1,10 @@
+.icon-plus {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    background-color: currentColor;
+    -webkit-mask-image: url("../../images/plus.svg");
+    mask-image: url("../../images/plus.svg");
+}

@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
+
+@import "../vendor/normalize.css";
+@import "../blocks/body/body.css";
+@import "../blocks/container/container.css";
+@import "../blocks/link/link.css";
+
+@import "../blocks/button/button.css";
+@import "../blocks/button/_style/button_style_blue.css";
+@import "../blocks/button/_style/button_style_light-blue.css";
+@import "../blocks/button/_style/button_style_none.css";
+@import "../blocks/button/size/button_size_auto.css";
+@import "../blocks/button/_style/button_style_light-blue-outline.css";
+@import "../blocks/button/size/button_size_subscribe.css";
+
+
+@import "../blocks/header/header.css";
+
+@import "../blocks/nav/nav.css";
+@import "../blocks/nav/__container/nav__container.css";
+@import "../blocks/nav/__items/nav__items.css";
+@import "../blocks/nav/__item/nav__item.css";
+@import "../blocks/nav/__item/_active/nav__item_active.css";
+@import "../blocks/nav/__item/_disabled/nav__item_disabled.css";
+@import "../blocks/nav/__link/nav__link.css";
+@import "../blocks/nav/__badge/nav__badge.css";
+
+
+@import "../blocks/main/main.css";
+
+@import "../blocks/single-card/single-card.css";
+@import "../blocks/single-card/__title/single-card__title.css";
+@import "../blocks/single-card/__image/single-card__image.css";
+@import "../blocks/single-card/__info/single-card__info.css";
+@import "../blocks/single-card/__header-info/single-card__header-info.css";
+@import "../blocks/single-card/__items/single-card__items.css";
+@import "../blocks/single-card/__item/single-card__item.css";
+@import "../blocks/single-card/__text/single-card__text.css";
+@import "../blocks/single-card/__items/_column/single-card__items_column.css";
+@import "../blocks/single-card/__section/single-card__section.css";
+@import "../blocks/single-card/__section-title/single-card__section-title.css";
+@import "../blocks/single-card/__section-text/single-card__section-text.css";
+@import "../blocks/single-card/__favorite/single-card__favorite.css";
+@import "../blocks/single-card/__favorite-tooltip/single-card__favorite-tooltip.css";
+@import "../blocks/single-card/__section-item/single-card__section-item.css";
+
+@import "../blocks/footer/footer.css";
+@import "../blocks/footer/__container/footer__container.css";
+@import "../blocks/footer/__link/footer__link.css";
+@import "../blocks/footer/__item/footer__item.css";
+@import "../blocks/footer/__items/footer__items.css";
+@import "../blocks/footer/__brand/footer__brand.css";
+
+
+@import "../blocks/badge/badge.css";
+@import "../blocks/badge/_style/badge_style_green.css";
+@import "../blocks/badge/_style/badge_style_orange.css";
+@import "../blocks/badge/_style/badge_style_purple.css";
+@import "../blocks/badge/_style/badge_style_blue.css";
+
+@import "../blocks/icon-check/icon-check.css";
+@import "../blocks/icon-time/icon-time.css";
+@import "../blocks/icon-user/icon-user.css";
+@import "../blocks/icon-plus/icon-plus.css";
+@import "../blocks/icon-favorite/icon-favorite.css";
+@import "../blocks/icon-favorite/_active/icon-favorite_active.css";
+@import "../blocks/icon-favorite/big/icon-favorite_big.css";
+* {
+    box-sizing: border-box;
+}
+html,
+body {
+    min-height: 100%;
+}

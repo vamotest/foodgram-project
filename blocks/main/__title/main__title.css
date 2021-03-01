@@ -1,0 +1,10 @@
+.main__title {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 49px;
+    color: #000000;
+    padding: 0;
+    margin: 0;
+}

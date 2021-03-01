@@ -1,0 +1,9 @@
+.single-card__section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+    margin: 0 0 12px;
+}

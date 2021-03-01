@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
+
+
+@import "../vendor/normalize.css";
+@import "../blocks/body/body.css";
+@import "../blocks/container/container.css";
+@import "../blocks/link/link.css";
+
+@import "../blocks/button/button.css";
+@import "../blocks/button/_style/button_style_blue.css";
+
+@import "../blocks/header/header.css";
+
+@import "../blocks/nav/nav.css";
+@import "../blocks/nav/__container/nav__container.css";
+@import "../blocks/nav/__items/nav__items.css";
+@import "../blocks/nav/__item/nav__item.css";
+@import "../blocks/nav/__item/_active/nav__item_active.css";
+@import "../blocks/nav/__item/_disabled/nav__item_disabled.css";
+@import "../blocks/nav/__link/nav__link.css";
+@import "../blocks/nav/__badge/nav__badge.css";
+
+@import "../blocks/main/main.css";
+@import "../blocks/main/__header/main__header.css";
+@import "../blocks/main/__title/main__title.css";
+
+@import "../blocks/form-container/form-container.css";
+@import "../blocks/form/form.css";
+@import "../blocks/form/__label/form__label.css";
+@import "../blocks/form/__input/form__input.css";
+@import "../blocks/form/__error/form__error.css";
+@import "../blocks/form/__input-info/form__input-info.css";
+@import "../blocks/form/__group/form__group.css";
+@import "../blocks/form/__field-group/form__field-group.css";
+@import "../blocks/form/__info-text/form__info-text.css";
+@import "../blocks/form/__forgot-link/form__forgot-link.css";
+@import "../blocks/form/__textarea/form__textarea.css";
+@import "../blocks/form/__field-group-ingredientes/form__field-group-ingredientes.css";
+@import "../blocks/form/__ingredient-link/form__ingerident-link.css";
+@import "../blocks/form/__field-group/_time/form__field-group_time.css";
+@import "../blocks/form/__file/form__file.css";
+@import "../blocks/form/__file-button/form__file-button.css";
+@import "../blocks/form/__item-list/form__item-list.css";
+@import "../blocks/form/__dropdown-items/form__dropdown-items.css";
+@import "../blocks/form/__dropdown/form__dropdown.css";
+@import "../blocks/form/__field-item-ingredient/form__field-item-ingredient.css";
+@import "../blocks/form/__footer/form__footer.css";
+@import "../blocks/form/__field-item-delete/form__field-item-delete.css";
+
+
+@import "../blocks/tags/tags.css";
+@import "../blocks/tags/__item/tags__item.css";
+@import "../blocks/tags/__label/tags__label.css";
+@import "../blocks/tags/__checkbox/tags__checkbox.css";
+@import "../blocks/tags/__checkbox/_style/tags__checkbox_style_green.css";
+@import "../blocks/tags/__checkbox/_style/tags__checkbox_style_orange.css";
+@import "../blocks/tags/__checkbox/_style/tags__checkbox_style_purple.css";
+
+@import "../blocks/footer/footer.css";
+@import "../blocks/footer/__container/footer__container.css";
+@import "../blocks/footer/__link/footer__link.css";
+@import "../blocks/footer/__item/footer__item.css";
+@import "../blocks/footer/__items/footer__items.css";
+@import "../blocks/footer/__brand/footer__brand.css";
+
+@import "../blocks/badge/badge.css";
+
+@import "../blocks/badge/_style/badge_style_blue.css";
+
+
+
+
+* {
+    box-sizing: border-box;
+}
+html,
+body {
+    min-height: 100%;
+}

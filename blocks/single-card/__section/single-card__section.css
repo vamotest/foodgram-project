@@ -1,0 +1,6 @@
+.single-card__section {
+    margin: 0 0 22px;
+}
+.single-card__section:last-child {
+    margin: 0;
+}

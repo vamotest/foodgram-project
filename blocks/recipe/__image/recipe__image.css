@@ -1,0 +1,6 @@
+.recipe__image {
+    width: 72px;
+    height: 72px;
+    grid-area: image;
+    border-radius: 50%;
+}

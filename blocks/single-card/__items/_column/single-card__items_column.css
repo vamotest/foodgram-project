@@ -1,0 +1,5 @@
+.single-card__items_column {
+    flex-direction: column;
+    max-height: 129px;
+    flex-wrap: wrap;
+}

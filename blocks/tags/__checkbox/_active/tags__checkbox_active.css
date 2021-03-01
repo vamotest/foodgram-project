@@ -1,0 +1,12 @@
+.tags__checkbox_active {
+    background: currentColor;
+}
+.tags__checkbox_active:before {
+    content: '';
+    position: absolute;
+    background: url("../../../../images/yes.svg");
+    width: 12px;
+    height: 9px;
+    top: 7px;
+    left: 5px;
+}

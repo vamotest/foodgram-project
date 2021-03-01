@@ -1,0 +1,8 @@
+.form__field-group-ingredientes {
+    display: grid;
+    grid-template-columns: 8fr 2fr 0.5fr;
+    grid-template-rows: auto;
+    grid-column-gap: 12px;
+    justify-items: end;
+    align-items: center;
+}

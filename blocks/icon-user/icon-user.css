@@ -1,0 +1,8 @@
+.icon-user {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    background-image: url("../../images/userIcon.svg");
+    width: 20px;
+    height: 20px;
+}

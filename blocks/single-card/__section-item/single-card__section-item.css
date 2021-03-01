@@ -1,0 +1,11 @@
+.single-card__section-item {
+    font-size: 16px;
+    line-height: 26px;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+    width: max-content;
+}

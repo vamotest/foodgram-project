@@ -1,0 +1,7 @@
+.tags {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+}

@@ -1,0 +1,21 @@
+.card-user__item {
+    position: relative;
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    list-style-type: none;
+}
+.card-user__item:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #EEEEEE;
+    height: 1px;
+    width: calc(100% - 72px);
+}
+.card-user__item:last-child {
+    margin-bottom: 0;
+}
+.card-user__item:last-child:after {
+    content: none;
+}

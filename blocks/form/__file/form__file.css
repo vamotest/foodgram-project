@@ -1,0 +1,6 @@
+.form__file {
+
+}
+.form__file[type='file'] {
+    display: none;
+}

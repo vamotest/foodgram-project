@@ -1,0 +1,6 @@
+.single-card__favorite {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+

@@ -1,0 +1,14 @@
+.form__field-group {
+    display: grid;
+    grid-gap: 9px;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+    align-items: center;
+
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    margin-left: auto;
+    max-width: 370px;
+    width: 100%;
+    position: relative;
+}

@@ -1,0 +1,8 @@
+.button_style_light-blue-outline {
+    color: #4A61DD;
+    border: 1px solid #DEE2F2;
+    background: #fff;
+}
+.button_style_light-blue-outline:hover {
+    background: #f8f8f8;
+}

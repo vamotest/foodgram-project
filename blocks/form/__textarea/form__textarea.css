@@ -1,0 +1,20 @@
+.form__textarea {
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    border-radius: 6px;
+    resize: none;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+    padding: 12px 9px;
+    width: 100%;
+}
+.form__textarea:focus {
+    border: 1px solid #4A61DD;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,6 @@
+.button_style_none {
+    padding: 0;
+}
+.button_style_none:active {
+    box-shadow: none;
+}

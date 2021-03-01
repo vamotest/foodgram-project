@@ -1,0 +1,15 @@
+.recipe__text {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    max-width: 200px;
+    color: #000000;
+    grid-area: text;
+    align-self: start;
+    margin: 0 0 28px;
+}
+.recipe__text:last-child {
+    margin-bottom: 0;
+}

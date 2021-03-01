@@ -1,0 +1,11 @@
+.nav__item {
+    display: flex;
+    align-items: center;
+    margin-right: 28px;
+    height: 100%;
+    color: #000000;
+    position: relative;
+}
+.nav__item:last-child {
+    margin-right: 0;
+}

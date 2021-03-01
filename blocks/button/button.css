@@ -1,0 +1,22 @@
+.button {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    background: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    height: 48px;
+    line-height: 1;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: background 0.2s;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+    width: max-content;
+}
+.button:active {
+    box-shadow: 0 0 7px #ddd;
+}
+

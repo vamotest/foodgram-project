@@ -1,0 +1,8 @@
+.pagination__container {
+    display: inline-flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+    height: 50px;
+    align-items: center;
+}

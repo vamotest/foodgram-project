@@ -1,0 +1,3 @@
+.card-list_column {
+    grid-template-columns: 1fr;
+}

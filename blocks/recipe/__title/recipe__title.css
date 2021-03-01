@@ -1,0 +1,13 @@
+.recipe__title {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    max-width: 200px;
+
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+    margin: 10px 0 13px;
+
+    grid-area: title;
+}

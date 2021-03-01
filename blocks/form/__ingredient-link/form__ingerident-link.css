@@ -1,0 +1,22 @@
+.form__ingredient-link {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+    cursor: pointer;
+    justify-self: start;
+    position: relative;
+    grid-row: auto;
+    grid-column: 1/-1;
+}
+.form__ingredient-link:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 2px;
+    left: 0;
+    background:  currentColor;
+}

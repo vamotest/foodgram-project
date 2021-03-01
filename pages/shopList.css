@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
+
+@import "../vendor/normalize.css";
+@import "../blocks/body/body.css";
+@import "../blocks/container/container.css";
+@import "../blocks/link/link.css";
+
+@import "../blocks/button/button.css";
+@import "../blocks/button/_style/button_style_light-blue.css";
+@import "../blocks/button/_style/button_style_blue.css";
+
+@import "../blocks/button/size/button_size_auto.css";
+@import "../blocks/header/header.css";
+
+
+@import "../blocks/nav/nav.css";
+@import "../blocks/nav/__container/nav__container.css";
+@import "../blocks/nav/__items/nav__items.css";
+@import "../blocks/nav/__item/nav__item.css";
+@import "../blocks/nav/__item/_active/nav__item_active.css";
+@import "../blocks/nav/__item/_disabled/nav__item_disabled.css";
+@import "../blocks/nav/__link/nav__link.css";
+@import "../blocks/nav/__badge/nav__badge.css";
+
+@import "../blocks/main/main.css";
+@import "../blocks/main/__header/main__header.css";
+@import "../blocks/main/__title/main__title.css";
+
+
+@import "../blocks/card-list/card-list.css";
+@import "../blocks/card-list/_column/card-list_column.css";
+@import "../blocks/shopping-list/shopping-list.css";
+@import "../blocks/shopping-list/__item/shopping-list__item.css";
+@import "../blocks/shopping-list/__button/shopping-list__button.css";
+
+
+@import "../blocks/footer/footer.css";
+@import "../blocks/footer/__container/footer__container.css";
+@import "../blocks/footer/__link/footer__link.css";
+@import "../blocks/footer/__item/footer__item.css";
+@import "../blocks/footer/__items/footer__items.css";
+@import "../blocks/footer/__brand/footer__brand.css";
+
+
+@import "../blocks/recipe/recipe.css";
+@import "../blocks/recipe/__title/recipe__title.css";
+@import "../blocks/recipe/__image/recipe__image.css";
+@import "../blocks/recipe/__text/recipe__text.css";
+@import "../blocks/recipe/_reverse/recipe_reverse.css";
+@import "../blocks/recipe/__image/_big/recipe__image_big.css";
+
+@import "../blocks/icon-time/icon-time.css";
+
+
+@import "../blocks/badge/badge.css";
+@import "../blocks/badge/_style/badge_style_blue.css";
+* {
+    box-sizing: border-box;
+}
+html,
+body {
+    min-height: 100%;
+}

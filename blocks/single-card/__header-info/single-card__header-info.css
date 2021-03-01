@@ -1,0 +1,5 @@
+.single-card__header-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 18px;
+}

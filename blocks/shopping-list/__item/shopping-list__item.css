@@ -1,0 +1,24 @@
+.shopping-list__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    max-width: 600px;
+    align-content: flex-start;
+    width: 100%;
+    position: relative;
+    justify-content: space-between;
+    padding-bottom: 18px;
+    list-style-type: none;
+}
+.shopping-list__item:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #EEEEEE;
+    height: 1px;
+    width: 100%;
+}
+.shopping-list__item:last-child {
+    margin-bottom: 0;
+}

@@ -1,0 +1,9 @@
+.card-user {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #EEEEEE;
+    box-sizing: border-box;
+    border-radius: 8px;
+    max-width: 363px;
+    width: 100%;
+}

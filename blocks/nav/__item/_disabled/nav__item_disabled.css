@@ -1,0 +1,4 @@
+.nav__item_disabled {
+    color: #8DA1B8;
+    cursor: context-menu;
+}

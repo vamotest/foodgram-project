@@ -1,0 +1,11 @@
+.card__items {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+
+}
+.card__items:last-child {
+    margin-bottom: 0;
+}

@@ -1,0 +1,27 @@
+.tags__checkbox {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    color: #ddd;
+    border: 1px solid currentColor;
+    -webkit-appearance: none;
+    outline: none;
+    margin-right: 8px;
+    cursor: pointer;
+}
+.tags__checkbox:checked {
+    background: currentColor;
+}
+.tags__checkbox:checked:before {
+    content: '';
+    position: absolute;
+    background: url("../../../images/yes.svg");
+    width: 12px;
+    height: 9px;
+    top: 7px;
+    left: 5px;
+}
+.tags__checkbox:active {
+    box-shadow: 0 0 7px #ddd;
+}

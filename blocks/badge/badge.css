@@ -1,0 +1,11 @@
+.badge {
+    color: #fff;
+    background: #ddd;
+    border-radius: 24px;
+    padding: 4px 12px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    font-family: 'Montserrat', sans-serif;
+}
