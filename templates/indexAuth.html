@@ -17,37 +17,37 @@
         </ul>
     </div>
     <div class="card-list">
-    <div class="card" data-id="120">
-        <a href="#" class="link" target="_blank"><img src="/static/images/testCardImg.png" alt="Какой-то текст" class="card__image"></a>
-        <div class="card__body">
-            <a class="card__title link" href="#" target="_blank">Французские тосты</a>
-            <ul class="card__items">
-                <li class="card__item"><span class="badge badge_style_green">Обед</span></li>
-                <li class="card__item"><span class="badge badge_style_orange">Завтрак</span></li>
-                <li class="card__item"><span class="badge badge_style_purple">Ужин</span></li>
-            </ul>
-            <div class="card__items card__items_column">
-                <p class="card__text"><span class="icon-time"></span> 20 мин.</p>
-                <p class="card__text"><span class="icon-user"></span> <a href="#" style="color: black">Вероника Чернова</a></p>
+        <div class="card" data-id="120">
+            <a href="#" class="link" target="_blank"><img src="/static/images/testCardImg.png" alt="Какой-то текст" class="card__image"></a>
+            <div class="card__body">
+                <a class="card__title link" href="#" target="_blank">Французские тосты</a>
+                <ul class="card__items">
+                    <li class="card__item"><span class="badge badge_style_green">Обед</span></li>
+                    <li class="card__item"><span class="badge badge_style_orange">Завтрак</span></li>
+                    <li class="card__item"><span class="badge badge_style_purple">Ужин</span></li>
+                </ul>
+                <div class="card__items card__items_column">
+                    <p class="card__text"><span class="icon-time"></span> 20 мин.</p>
+                    <p class="card__text"><span class="icon-user"></span> <a href="#" style="color: black">Вероника Чернова</a></p>
+                </div>
+            </div>
+            <div class="card__footer">
+                <button class="button button_style_light-blue" name="purchases" data-out><span class="icon-plus button__icon"></span>Добавить в покупки</button>
+                <button class="button button_style_none" name="favorites" data-out><span class="icon-favorite"></span></button>
             </div>
         </div>
-        <div class="card__footer">
-            <button class="button button_style_light-blue" name="purchases" data-out><span class="icon-plus button__icon"></span>Добавить в покупки</button>
-            <button class="button button_style_none" name="favorites" data-out><span class="icon-favorite"></span></button>
-        </div>
-    </div>
-    <div class="card" data-id="121">
-        <a href="#" class="link" target="_blank"><img src="/static/images/testCardImg.png" alt="Какой-то текст" class="card__image"></a>
-        <div class="card__body">
-            <a class="card__title link" href="#" target="_blank">Французские тосты</a>
-            <ul class="card__items">
-                <li class="card__item"><span class="badge badge_style_green">Обед</span></li>
-                <li class="card__item"><span class="badge badge_style_orange">Завтрак</span></li>
-                <li class="card__item"><span class="badge badge_style_purple">Ужин</span></li>
-            </ul>
-            <div class="card__items card__items_column">
-                <p class="card__text"><span class="icon-time"></span> 20 мин.</p>
-                <p class="card__text"><span class="icon-user"></span> <a href="#" style="color: black">Вероника Чернова</a></p>
+        <div class="card" data-id="121">
+            <a href="#" class="link" target="_blank"><img src="/static/images/testCardImg.png" alt="Какой-то текст" class="card__image"></a>
+            <div class="card__body">
+                <a class="card__title link" href="#" target="_blank">Французские тосты</a>
+                <ul class="card__items">
+                    <li class="card__item"><span class="badge badge_style_green">Обед</span></li>
+                    <li class="card__item"><span class="badge badge_style_orange">Завтрак</span></li>
+                    <li class="card__item"><span class="badge badge_style_purple">Ужин</span></li>
+                </ul>
+                <div class="card__items card__items_column">
+                    <p class="card__text"><span class="icon-time"></span> 20 мин.</p>
+                    <p class="card__text"><span class="icon-user"></span> <a href="#" style="color: black">Вероника Чернова</a></p>
             </div>
         </div>
         <div class="card__footer">
@@ -112,16 +112,6 @@
             <button class="button button_style_none" name="favorites" data-out><span class="icon-favorite"></span></button>
         </div>
     </div>
-</div>
-    <nav class="pagination" aria-label="Search results pages">
-        <ul class="pagination__container">
-            <li class="pagination__item"><a class="pagination__link link" href="#"><span class="icon-left"></span></a></li>
-            <li class="pagination__item pagination__item_active"><a class="pagination__link link" href="#">1</a></li>
-            <li class="pagination__item"><a class="pagination__link link" href="#">2</a></li>
-            <li class="pagination__item"><a class="pagination__link link" href="#">3</a></li>
-            <li class="pagination__item"><a class="pagination__link link" href="#">4</a></li>
-            <li class="pagination__item"><a class="pagination__link link" href="#">5</a></li>
-            <li class="pagination__item"><a class="pagination__link link" href="#"><span class="icon-right"></span></a></li>
-        </ul>
-    </nav>
+    </div>
+    {% include 'paginator.html' with items=page paginator=paginator %}
 </main>
