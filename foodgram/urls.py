@@ -1,9 +1,11 @@
+from django.contrib import admin
 from django.contrib.flatpages import views
 from django.urls import include, path
 
 urlpatterns = [
     path('auth/', include('django.contrib.auth.urls')),
     path('auth/', include('users.urls')),
+    path('admin/', admin.site.urls),
 ]
 
 urlpatterns += [
