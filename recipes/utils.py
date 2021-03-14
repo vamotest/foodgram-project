@@ -7,3 +7,8 @@ def get_paginated_view(request, some_list):
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     return page, paginator
+
+
+def request_tags(request):
+    return request.GET.getlist('tag', ('breakfast', 'lunch', 'dinner'))
+
