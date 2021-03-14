@@ -118,3 +118,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+FORBIDDEN_USERNAMES = (
+    'add', 'auth', 'api', 'admin', 'about', 'edit', 'delete', 'favorite',
+    'subscription', 'new', 'favorite', 'subscription', 'shopping',
+)
