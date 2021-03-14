@@ -1,25 +1,31 @@
 <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}{% endblock %}</title>
-    {% block static %}{% endblock %}
-</head>
-<body class="body">
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{% block title %}{% endblock %}</title>
+        {% load static %}
+        {% load user_filters %}
 
-{% include 'nav.html' %}
-{% block content %}
-    <!-- Содержимое страницы -->
-{% endblock content %}
+        {% block css %}
+        {% endblock %}
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+    </head>
 
-{% include 'footer.html' %}
+    <body class="body">
+        {% csrf_token %}
+        {% include 'header.html' %}
 
-{% block js %}
-    <!-- Используемые JS-скрипты -->
-{% endblock %}
+        <main class="main container">
+            {% block content %}{% endblock content %}
+        </main>
 
-</body>
+        {% include 'footer.html' %}
+
+        {% block js %}
+        {% endblock js %}
+    </body>
+
 </html>
