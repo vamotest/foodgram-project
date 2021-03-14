@@ -14,12 +14,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = ENV.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-ALLOWED_HOSTS = ENV.get('DJANGO_ALLOWED_HOSTS').split(', ')
-
+ALLOWED_HOSTS = [ENV.get('DJANGO_ALLOWED_HOSTS').split(', ')
+]
 # Application definition
 INSTALLED_APPS = [
     'users',
     'recipes',
+    'api',
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django.contrib.admin',
