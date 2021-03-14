@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ flatpage.title }}{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'pages/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main__header">
+  <h1 class="main__title">Используемые технологии</h1>
+</div>
+<div class="custom-center-block">
+  <p class="custom-text-block">
+
+      <p>
+        <a href="https://www.python.org/" target="_blank">
+            <img src="https://img.shields.io/badge/-Python-464646??style=flat-square&logo=Python" alt="python3"/>
+        </a>
+
+        <a href="https://www.djangoproject.com/" target="_blank">
+            <img src="https://img.shields.io/badge/-Django-464646??style=flat-square&logo=Django" alt="django"/>
+        </a>
+
+        <a href="https://www.postgresql.org/" target="_blank">
+            <img src="https://img.shields.io/badge/-PostgreSQL-464646??style=flat-square&logo=PostgreSQL" alt="postgres"/>
+        </a>
+
+        <a href="https://nginx.org/ru/" target="_blank">
+            <img src="https://img.shields.io/badge/-NGINX-464646??style=flat-square&logo=NGINX" alt="nginx"/>
+        </a>
+
+        <a href="https://www.docker.com/" target="_blank">
+            <img src="https://img.shields.io/badge/-Docker-464646??style=flat-square&logo=docker" alt="docker"/>
+        </a>
+
+        <a href="https://github.com/features/actions" target="_blank">
+            <img src="https://img.shields.io/badge/-GitHub%20Actions-464646??style=flat-square&logo=GitHub%20actions" alt="git-actions"/>
+        </a>
+      </p>
+
+      <p>
+        <a href="https://www.python.org/" target="_blank">
+            <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="python3 "width="320" height="95"/>
+        </a>
+        <br><br><br>
+        <a href="https://www.djangoproject.com/" target="_blank">
+            <img src="https://static.djangoproject.com/img/logos/django-logo-positive.svg" alt="django" width="320" height="137"/>
+        </a>
+        <br><br><br>
+        <a href="https://www.postgresql.org/" target="_blank">
+            <img src="https://wiki.postgresql.org/images/a/a4/PostgreSQL_logo.3colors.svg" alt="postgres" width="120" height="124"/>
+        </a>
+        <br><br><br>
+        <a href="https://nginx.org/ru/" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg" alt="nginx" width="320" height="68"/>
+        </a>
+        <br><br><br>
+        <a href="https://www.docker.com/" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Docker_%28container_engine%29_logo.svg" alt="docker" width="320" height="76"/>
+        </a>
+        <br><br><br>
+        <a href="https://github.com/features/actions" target="_blank">
+            <img src="https://img2.storyblok.com/672x0/f/79165/1200x630/ebb5571e69/github-action-01.png" alt="git-actions" width="320" height="176"/>
+        </a>
+    </p>
+  </p>
+</div>
+{% endblock content %}
