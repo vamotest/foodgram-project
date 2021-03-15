@@ -1,0 +1,8 @@
+<div class="recipe {% if shop_list %}recipe_reverse{% endif %}">
+  {% load thumbnail %}
+  {% thumbnail recipe.image "144x144" crop="center" as im %}
+    <img src="{{ im.url }}" alt="{{ recipe.title }}" class="recipe__image {% if shop_list %}recipe__image_big{% endif %}">
+  {% endthumbnail %}
+  <h3 class="recipe__title">{{ recipe.title }}</h3>
+  <p class="recipe__text"><span class="icon-time"></span> {{ recipe.cooking_time }} мин.</p>
+</div>

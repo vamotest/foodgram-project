@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load user_filters %}
+
+{% block title %}Войти на сайт{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'pages/form.css' %}">
+{% endblock %}
+
+{% block content %}
+{% load user_filters %}
+  <div class="main__header">
+    <h1 class="main__title">Войти на сайт</h1>
+  </div>
+  <div class="form-container">
+    <form class="form" method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      {% if next %}            
+        <div class="form__field-group">
+          <span class="form__error">Вы обратились к странице, доступ к которой возможен только для залогиненных пользователей.<br>
+          Пожалуйста, авторизуйтесь.</span>
+        </div>
+      {% endif %}
+      <div class="form__group">
+        <label for="{{ form.username.id_for_label }}" class="form__label">Имя</label>
+        <div class="form__field-group">
+          {{ form.username|addclass:"form__input" }}
+          <span class="form__error"></span>
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="{{ form.password.id_for_label }}" class="form__label">Пароль</label>
+        <div class="form__field-group">
+          {{ form.password|addclass:"form__input" }}
+          {% if form.errors %}
+            <span class="form__error">Имя пользователя и пароль не совпадают. Введите правильные данные.</span>
+          {% endif %}
+        </div>
+      </div>
+      <div class="form__footer">
+        <button class="button button_style_blue">Войти</button>
+        <a class="form__forgot-link" href="{% url 'password_reset' %}">Забыли пароль?</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}
