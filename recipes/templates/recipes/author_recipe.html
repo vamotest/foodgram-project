@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load user_filters %}
+
+{% block title %}Рецепты{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'pages/index.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="main__header">
+    <h1 class="main__title">{{ author|get_full_name_or_username }}</h1>
+    {% include './includes/filter_tags.html' %}
+  </div>
+
+  {% if user.is_authenticated and author != user %}
+    <div class="author-subscribe" data-author="{{ author.id }}">
+      <p style="padding: 0 0 2em 0;">
+        {% if user|is_subscribed_to:author %}
+          <button class="button button_style_light-blue button_size_subscribe" name="subscribe">
+            Отписаться от автора
+          </button>
+        {% else %}
+          <button class="button button_style_light-blue button_size_subscribe" name="subscribe" data-out>
+            Подписаться на автора
+          </button>
+        {% endif %}
+      </p>
+    </div>
+  {% endif %}
+
+  <div class="card-list">
+    {% for recipe in page %}
+      {% include './includes/recipe_card_full.html' with recipe=recipe %}
+    {% endfor %}
+  </div>
+
+  {% if page.has_other_pages %}
+    {% include './includes/paginatior.html' with page=page paginator=paginator %}
+  {% endif %}
+{% endblock %}
+
+{% block js %}
+  <script src="{% static 'js/components/Header.js' %}"></script>
+  <script src="{% static 'js/api/Api.js' %}"></script>
+  <script src="{% static 'js/config/config.js' %}"></script>
+  <script src="{% static 'js/components/MainCards.js' %}"></script>
+  <script src="{% static 'js/components/Purchases.js' %}"></script>
+  <script src="{% static 'js/components/Favorites.js' %}"></script>
+  <script src="{% static 'js/components/Subscribe.js' %}"></script>
+  <script src="{% static 'js/components/AuthorRecipe.js' %}"></script>
+  <script src="{% static 'js/authorRecipe.js' %}"></script>
+{% endblock %}

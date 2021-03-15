@@ -82,6 +82,18 @@ def recipe_view_slug(request, recipe_id, slug):
     return render(request, 'recipes/single_page.html', context)
 
 
-def recipe_view_redirect(request, recipe_id):
-    recipe = get_object_or_404(Recipe.objects.all(), id=recipe_id)
-    return redirect('recipe_view_slug', recipe_id=recipe.id, slug=recipe.slug)
+def profile_view(request, username):
+    tags = request_tags(request)
+    author = get_object_or_404(User, username=username)
+    author_recipes = author.recipes.filter(
+        tags__title__in=tags).prefetch_related('tags').distinct()
+
+    page, paginator = get_paginated_view(request, author_recipes)
+    context = {
+        'author': author,
+        'page': page,
+        'paginator': paginator,
+        'tags': tags,
+        'all_tags': Tag.objects.all(),
+    }
+    return render(request, 'recipes/author_recipe.html', context)

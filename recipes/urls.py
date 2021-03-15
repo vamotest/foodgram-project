@@ -26,4 +26,5 @@ recipes_urls = [
 urlpatterns = [
     path('', views.index, name='index'),
     path('recipe/', include(recipes_urls)),
+    path('<str:username>/', views.profile_view, name='profile_view'),
 ]
