@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from api.models import Subscription
+from api.models import Favorite, Subscription
 from recipes.models import Ingredient
 
 
@@ -27,3 +27,9 @@ class SubscriptionSerializer(CustomModelSerializer):
         if user.id == value:
             raise ValidationError('Нельзя подписаться на самого себя')
         return value
+
+
+class FavoriteSerializer(CustomModelSerializer):
+    class Meta:
+        fields = ('recipe', )
+        model = Favorite

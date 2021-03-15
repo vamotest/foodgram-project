@@ -1,12 +1,13 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import filters, mixins, status, viewsets
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from recipes.models import Ingredient
 
-from .models import Subscription
-from .serializers import IngredientSerializer, SubscriptionSerializer
+from .models import Favorite, Subscription
+from .serializers import (FavoriteSerializer, IngredientSerializer,
+                          SubscriptionSerializer)
 
 
 class IngredientViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
@@ -45,3 +46,10 @@ class SubscriptionViewSet(CreateDestroyViewSet):
     serializer_class = SubscriptionSerializer
     permission_classes = [IsAuthenticated]
     lookup_field = 'author'
+
+
+class FavoriteViewSet(CreateDestroyViewSet):
+    queryset = Favorite.objects.all()
+    serializer_class = FavoriteSerializer
+    permission_classes = [AllowAny]
+    lookup_field = 'recipe'

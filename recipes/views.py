@@ -114,3 +114,20 @@ def subscriptions(request):
     page, paginator = get_paginated_view(request, authors)
     context = {'page': page, 'paginator': paginator}
     return render(request, 'recipes/user_subscriptions.html', context)
+
+
+@login_required
+def favorites(request):
+    tags = request_tags(request)
+    recipes = Recipe.objects.filter(
+        favored_by__user=request.user, tags__title__in=tags
+    ).select_related('author').prefetch_related('tags').distinct()
+
+    page, paginator = get_paginated_view(request, recipes)
+    context = {
+        'page': page,
+        'paginator': paginator,
+        'tags': tags,
+        'all_tags': Tag.objects.all(),
+    }
+    return render(request, 'recipes/favorite.html', context)
