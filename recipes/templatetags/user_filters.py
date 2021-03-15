@@ -42,3 +42,8 @@ def tags_to_url_params(tags):
 @register.filter
 def is_in_shop_list_of(recipe, user):
     return Purchase.objects.filter(recipe=recipe, user=user).exists()
+
+
+@register.filter
+def addclass(field, css):
+    return field.as_widget(attrs={'class': css})
