@@ -1,7 +1,7 @@
 from django import template
 from django.contrib.auth import get_user_model
 
-from api.models import Favorite, Subscription
+from api.models import Favorite, Subscription, Purchase
 
 register = template.Library()
 User = get_user_model()
@@ -32,3 +32,9 @@ def conjoin(number, args):
         return f'{number} {args[1]}'
     elif last_digit > 4 or last_digit == 0:
         return f'{number} {args[2]}'
+
+
+@register.filter
+def tags_to_url_params(tags):
+    return '&' + '&'.join([f'tag={tag}' for tag in tags])
+
