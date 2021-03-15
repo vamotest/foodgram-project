@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count
+from django.db.models import Count, Sum
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import RecipeForm
@@ -131,3 +132,36 @@ def favorites(request):
         'all_tags': Tag.objects.all(),
     }
     return render(request, 'recipes/favorite.html', context)
+
+
+@login_required
+def purchases(request):
+    recipes = request.user.purchases.all()
+    return render(request, 'recipes/shop_list.html', {'recipes': recipes})
+
+
+@login_required
+def purchases_download(request):
+    title = 'recipe__ingredients__title'
+    dimension = 'recipe__ingredients__dimension'
+    quantity = 'recipe__ingredients_amounts__quantity'
+
+    ingredients = request.user.purchases.select_related('recipe').order_by(
+        title).values(title, dimension).annotate(amount=Sum(quantity)).all()
+
+    if not ingredients:
+        return render(request, 'misc/400.html', status=400)
+
+    text = 'Список покупок:\n\n'
+    for number, ingredient in enumerate(ingredients, start=1):
+        text += (
+            f'{number}) '
+            f'{ingredient[title]} - '
+            f'{ingredient["amount"]} '
+            f'{ingredient[dimension]}\n'
+        )
+
+    response = HttpResponse(text, content_type="text/plain")
+    filename = 'shopping_list.txt'
+    response['Content-Disposition'] = f'attachment; filename={filename}'
+    return response

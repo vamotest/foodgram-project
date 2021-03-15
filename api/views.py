@@ -7,7 +7,7 @@ from recipes.models import Ingredient
 
 from .models import Favorite, Subscription
 from .serializers import (FavoriteSerializer, IngredientSerializer,
-                          SubscriptionSerializer)
+                          PurchaseSerializer, SubscriptionSerializer)
 
 
 class IngredientViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
@@ -53,3 +53,12 @@ class FavoriteViewSet(CreateDestroyViewSet):
     serializer_class = FavoriteSerializer
     permission_classes = [AllowAny]
     lookup_field = 'recipe'
+
+
+class PurchaseViewSet(mixins.ListModelMixin, CreateDestroyViewSet):
+    serializer_class = PurchaseSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'recipe'
+
+    def get_queryset(self):
+        return self.request.user.purchases.all()

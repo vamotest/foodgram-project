@@ -1,7 +1,7 @@
 from django import template
 from django.contrib.auth import get_user_model
 
-from api.models import Favorite, Subscription, Purchase
+from api.models import Favorite, Purchase, Subscription
 
 register = template.Library()
 User = get_user_model()
@@ -38,3 +38,7 @@ def conjoin(number, args):
 def tags_to_url_params(tags):
     return '&' + '&'.join([f'tag={tag}' for tag in tags])
 
+
+@register.filter
+def is_in_shop_list_of(recipe, user):
+    return Purchase.objects.filter(recipe=recipe, user=user).exists()
