@@ -1,16 +1,18 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import filters, mixins, status, viewsets
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from recipes.models import Ingredient
 
-from .serializers import IngredientSerializer
+from .models import Subscription
+from .serializers import IngredientSerializer, SubscriptionSerializer
 
 
 class IngredientViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
-    filter_backends = (filters.SearchFilter, )
+    filter_backends = [filters.SearchFilter]
     search_fields = ('^title',)
 
 
@@ -36,3 +38,10 @@ class CreateDestroyViewSet(mixins.CreateModelMixin,
         success = instance.delete()
         context = {'success': bool(success)}
         return Response(context, status=status.HTTP_200_OK)
+
+
+class SubscriptionViewSet(CreateDestroyViewSet):
+    queryset = Subscription.objects.all()
+    serializer_class = SubscriptionSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'author'

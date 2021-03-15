@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import RecipeForm
@@ -97,3 +98,19 @@ def profile_view(request, username):
         'all_tags': Tag.objects.all(),
     }
     return render(request, 'recipes/author_recipe.html', context)
+
+
+def recipe_view_redirect(request, recipe_id):
+    recipe = get_object_or_404(Recipe.objects.all(), id=recipe_id)
+    return redirect('recipe_view_slug', recipe_id=recipe.id, slug=recipe.slug)
+
+
+@login_required
+def subscriptions(request):
+    authors = User.objects.filter(
+        following__user=request.user).prefetch_related('recipes').annotate(
+        recipe_count=Count('recipes')).order_by('username')
+
+    page, paginator = get_paginated_view(request, authors)
+    context = {'page': page, 'paginator': paginator}
+    return render(request, 'recipes/user_subscriptions.html', context)
