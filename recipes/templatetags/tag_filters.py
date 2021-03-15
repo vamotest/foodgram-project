@@ -17,6 +17,6 @@ def set_tag_qs(request, tag):
         tags.remove(tag.title)
     else:
         tags.append(tag.title)
-
+    
     new_req.setlist('tag', tags)
     return new_req.urlencode()
