@@ -30,9 +30,9 @@ purchases_urls = [
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('recipe/', include(recipes_urls)),
     path('subscriptions/', views.subscriptions, name='subscriptions'),
     path('favorites/', views.favorites, name='favorites'),
     path('purchases/', include(purchases_urls)),
+    path('recipe/', include(recipes_urls)),
     path('<str:username>/', views.profile_view, name='profile_view'),
 ]
