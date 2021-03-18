@@ -23,7 +23,6 @@ jobs:
       run: |
         python3 -m pip install --upgrade pip
         pip3 install flake8
-
     - name: Lint with flake8
       run: |
         flake8 .
@@ -49,8 +48,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/foodgram:latest
-
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.PROJECT_NAME }}:latest
 
   deploy:
    runs-on: ubuntu-latest
@@ -62,20 +60,30 @@ jobs:
      with:
        host: ${{ secrets.CLOUD_HOST }}
        username: ${{ secrets.CLOUD_USER }}
-       port: ${{ secrets.CLOUD_PORT }}
        key: ${{ secrets.SSH_KEY }}
        passphrase: ${{ secrets.PASSPHRASE }}
        script: |
-         export SECRET_KEY=${{ secrets.SECRET_KEY }}
-         export DEBUG=${{ secrets.DEBUG }}
-         export DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }}
-         export DEFAULT_FROM_EMAIL=${{ secrets.DEFAULT_FROM_EMAIL }}
-         export DB_ENGINE=${{ secrets.DB_ENGINE }}
-         export DB_NAME=${{ secrets.DB_NAME }}
-         export POSTGRES_USER=${{ secrets.POSTGRES_USER }}
-         export POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
-         export DB_HOST=${{ secrets.DB_HOST }}
-         export DB_PORT=${{ secrets.DB_PORT }}
+         FILE=.env
+         if [ -f "$FILE" ]
+         then
+           echo "$FILE exists and will removed"
+           rm $FILE
+         else
+           echo "$FILE does not exist"
+         fi
+
+         echo "Add new $FILE"
+         touch $FILE
+
+         echo DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }} >> $FILE
+         echo DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }} >> $FILE
+         echo DEFAULT_FROM_EMAIL=${{ secrets.DEFAULT_FROM_EMAIL }} >> $FILE
+         echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> $FILE
+         echo DB_NAME=${{ secrets.DB_NAME }} >> .env
+         echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> $FILE
+         echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> $FILE
+         echo DB_HOST=${{ secrets.DB_HOST }} >> $FILE
+         echo DB_PORT=${{ secrets.DB_PORT }} >> $FILE
 
    - name: Check is docker install
      uses: appleboy/ssh-action@master
@@ -102,11 +110,11 @@ jobs:
        port: ${{ secrets.CLOUD_PORT }}
        key: ${{ secrets.SSH_KEY }}
        passphrase: ${{ secrets.PASSPHRASE }}
-       script: |
-         sudo docker pull ${{ secrets.DOCKER_USERNAME }}/yamdb_final:latest
-         id=$(docker create ${{ secrets.DOCKER_USERNAME }}/yamdb_final:latest)
 
-         FILE=docker-compose.yaml
+       script: |
+         sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.PROJECT_NAME }}:latest
+         id=$(docker create ${{ secrets.DOCKER_USERNAME }}/${{ secrets.PROJECT_NAME }}:latest)
+         FILE=docker-compose.yml
          if [ -f "$FILE" ]
          then
              echo "$FILE exists and will removed"
@@ -114,14 +122,13 @@ jobs:
          else
              echo "$FILE does not exist"
          fi
-
          echo "Add new $FILE"
          docker cp $id:/usr/src/web/$FILE $FILE
-
          sudo docker rm -v $id
          sudo docker stop $(sudo docker ps -a -q) > /dev/null 2>&1
          sudo docker kill $(sudo docker ps -a -q) > /dev/null 2>&1
-         sudo docker-compose up --build -d --force-recreate
+         sudo docker-compose up -d --force-recreate
+
 
    - name: Prepare django
      uses: appleboy/ssh-action@master
@@ -148,6 +155,7 @@ jobs:
          sudo docker rmi $(docker images -q -f dangling=true) > /dev/null 2>&1
          sudo docker volume rm $(docker volume ls -qf dangling=true) > /dev/null 2>&1
          sudo docker system prune -f > /dev/null 2>&1
+
 
   send_message:
     runs-on: ubuntu-latest

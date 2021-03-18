@@ -5,7 +5,7 @@ from pathlib import Path
 ENV = os.environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = ENV.get('SECRET_KEY')
+SECRET_KEY = ENV.get('DJANGO_SECRET_KEY')
 ALLOWED_HOSTS = ENV.get('DJANGO_ALLOWED_HOSTS').split(', ')
 
 INSTALLED_APPS = [
