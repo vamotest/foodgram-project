@@ -1,41 +1,41 @@
-from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
+from rest_framework.fields import HiddenField, CurrentUserDefault
+from rest_framework.serializers import ModelSerializer
 
-from api.models import Favorite, Purchase, Subscription
+from api.models import Favorite
+from api.models import Purchase
+from api.models import Subscription
 from recipes.models import Ingredient
 
 
-class IngredientSerializer(serializers.ModelSerializer):
+def validate_author(data):
+    if data.get('author') == data.get('user'):
+        raise ValidationError('Нельзя подписаться на самого себя')
+    return data
+
+
+class IngredientSerializer(ModelSerializer):
     class Meta:
         fields = ('title', 'dimension')
         model = Ingredient
 
 
-class CustomModelSerializer(serializers.ModelSerializer):
-    def create(self, validated_data):
-        validated_data['user'] = self.context['request'].user
-        return self.Meta.model.objects.create(**validated_data)
-
-
-class SubscriptionSerializer(CustomModelSerializer):
+class SubscriptionSerializer(CurrentUserDefault, ModelSerializer):
+    user = HiddenField(default=CurrentUserDefault())
+    
     class Meta:
-        fields = ('author', )
+        fields = ('author', 'user')
         model = Subscription
-
-    def validate_author(self, value):
-        user = self.context['request'].user
-        if user.id == value:
-            raise ValidationError('Нельзя подписаться на самого себя')
-        return value
+        validators = (validate_author, )
 
 
-class FavoriteSerializer(CustomModelSerializer):
+class FavoriteSerializer(CurrentUserDefault, ModelSerializer):
     class Meta:
-        fields = ('recipe', )
+        fields = ('recipe',)
         model = Favorite
 
 
-class PurchaseSerializer(CustomModelSerializer):
+class PurchaseSerializer(CurrentUserDefault, ModelSerializer):
     class Meta:
-        fields = ('recipe', )
+        fields = ('recipe',)
         model = Purchase
