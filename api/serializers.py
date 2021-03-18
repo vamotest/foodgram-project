@@ -22,7 +22,7 @@ class IngredientSerializer(ModelSerializer):
 
 class SubscriptionSerializer(CurrentUserDefault, ModelSerializer):
     user = HiddenField(default=CurrentUserDefault())
-    
+
     class Meta:
         fields = ('author', 'user')
         model = Subscription

@@ -22,4 +22,3 @@ urlpatterns += [
     path('author/', views.flatpage, {'url': '/author/'}, name='author'),
     path('tech/', views.flatpage, {'url': '/tech/'}, name='tech'),
 ]
-
