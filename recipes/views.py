@@ -4,9 +4,13 @@ from django.db.models import Count, Sum
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import RecipeForm
-from .models import Recipe, Tag
-from .utils import edit_recipe, get_paginated_view, request_tags, save_recipe
+from recipes.forms import RecipeForm
+from recipes.models import Recipe
+from recipes.models import Tag
+from recipes.utils import edit_recipe
+from recipes.utils import get_paginated_view
+from recipes.utils import request_tags
+from recipes.utils import save_recipe
 
 User = get_user_model()
 
@@ -29,6 +33,7 @@ def index(request):
 @login_required
 def recipe_new(request):
     form = RecipeForm(request.POST or None, files=request.FILES or None)
+
     if form.is_valid():
         recipe = save_recipe(request, form)
 
@@ -154,14 +159,15 @@ def purchases_download(request):
 
     text = 'Список покупок:\n\n'
     for number, ingredient in enumerate(ingredients, start=1):
+        amount = ingredient['amount']
         text += (
             f'{number}) '
             f'{ingredient[title]} - '
-            f'{ingredient["amount"]} '
+            f'{amount} '
             f'{ingredient[dimension]}\n'
         )
 
-    response = HttpResponse(text, content_type="text/plain")
+    response = HttpResponse(text, content_type='text/plain')
     filename = 'shopping_list.txt'
     response['Content-Disposition'] = f'attachment; filename={filename}'
     return response

@@ -3,11 +3,12 @@ version: '3.8'
 services:
 
   web:
-    build: .
+    image: vamotest/foodgram-project:latest
     container_name: web
     restart: always
     volumes:
-      - .:/usr/src/web/
+      - static_data:/usr/src/web/static/
+      - nginx_config:/usr/src/web/nginx/
     env_file:
       - ./.env
     depends_on:
@@ -27,9 +28,9 @@ services:
     restart: always
     container_name: nginx
     volumes:
-      - ./static:/usr/src/web/static
-      - ./media:/usr/src/web/media
-      - ./nginx:/etc/nginx/conf.d
+      - static_data:/usr/src/web/static
+      - media_data:/usr/src/web/media
+      - nginx_config:/etc/nginx/conf.d
     ports:
       - 80:80
     depends_on:
@@ -37,3 +38,6 @@ services:
 
 volumes:
   postgres_data:
+  static_data:
+  media_data:
+  nginx_config:
