@@ -9,6 +9,7 @@ from api.serializers import FavoriteSerializer
 from api.serializers import IngredientSerializer
 from api.serializers import PurchaseSerializer
 from api.serializers import SubscriptionSerializer
+from api.permissions import IsAuthorOrAdmin
 from recipes.models import Ingredient
 
 
@@ -48,8 +49,7 @@ class CreateDestroyViewSet(mixins.CreateModelMixin,
 class SubscriptionViewSet(CreateDestroyViewSet):
     queryset = Subscription.objects.all()
     serializer_class = SubscriptionSerializer
-    
-    permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated, IsAuthorOrAdmin)
     lookup_field = 'author'
 
 
@@ -57,14 +57,14 @@ class FavoriteViewSet(CreateDestroyViewSet):
     queryset = Favorite.objects.all()
     serializer_class = FavoriteSerializer
     
-    permission_classes = [AllowAny]
+    permission_classes = (AllowAny,)
     lookup_field = 'recipe'
 
 
 class PurchaseViewSet(mixins.ListModelMixin, CreateDestroyViewSet):
     serializer_class = PurchaseSerializer
     
-    permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated, IsAuthorOrAdmin)
     lookup_field = 'recipe'
     
     def get_queryset(self):
