@@ -4,19 +4,18 @@ from django.db.models import Count, Sum
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import RecipeForm
-from .models import Recipe, Tag
-from .utils import edit_recipe, get_paginated_view, request_tags, save_recipe
+from recipes.forms import RecipeForm
+from recipes.models import Recipe
+from recipes.models import Tag
+from recipes.utils import edit_recipe
+from recipes.utils import get_paginated_view
+from recipes.utils import request_tags
+from recipes.utils import save_recipe
 
 User = get_user_model()
-import logging
-logger = logging.getLogger(__name__)
 
 
 def index(request):
-    logger.error('This is index')
-    logger.error(request)
-    
     tags = request_tags(request)
     recipes = Recipe.objects.filter(tags__title__in=tags).select_related(
         'author').prefetch_related('tags').distinct()
@@ -33,14 +32,11 @@ def index(request):
 
 @login_required
 def recipe_new(request):
-    logger.error('This is recipe_new')
-    logger.error(request)
-    
     form = RecipeForm(request.POST or None, files=request.FILES or None)
-    logger.error(form)
+
     if form.is_valid():
         recipe = save_recipe(request, form)
-        logger.error(recipe)
+
         return redirect(
             'recipe_view_slug', recipe_id=recipe.id, slug=recipe.slug
         )
@@ -51,9 +47,6 @@ def recipe_new(request):
 
 @login_required
 def recipe_edit(request, recipe_id, slug):
-    logger.error('This is recipe_edit')
-    logger.error(request)
-    
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
     if not request.user.is_superuser:
@@ -80,9 +73,6 @@ def recipe_edit(request, recipe_id, slug):
 
 @login_required
 def recipe_delete(request, recipe_id, slug):
-    logger.error('This is recipe_delete')
-    logger.error(request)
-    
     recipe = get_object_or_404(Recipe, id=recipe_id)
     if request.user.is_superuser or request.user == recipe.author:
         recipe.delete()
@@ -90,9 +80,6 @@ def recipe_delete(request, recipe_id, slug):
 
 
 def recipe_view_slug(request, recipe_id, slug):
-    logger.error('This is recipe_view_slug')
-    logger.error(request)
-    
     recipe = get_object_or_404(
         Recipe.objects.select_related('author'),
         id=recipe_id,
@@ -103,9 +90,6 @@ def recipe_view_slug(request, recipe_id, slug):
 
 
 def profile_view(request, username):
-    logger.error('This is profile_view')
-    logger.error(request)
-    
     tags = request_tags(request)
     author = get_object_or_404(User, username=username)
     author_recipes = author.recipes.filter(
@@ -123,18 +107,12 @@ def profile_view(request, username):
 
 
 def recipe_view_redirect(request, recipe_id):
-    logger.error('This is recipe_view_redirect')
-    logger.error(request)
-    
     recipe = get_object_or_404(Recipe.objects.all(), id=recipe_id)
     return redirect('recipe_view_slug', recipe_id=recipe.id, slug=recipe.slug)
 
 
 @login_required
 def subscriptions(request):
-    logger.error('This is subscriptions')
-    logger.error(request)
-    
     authors = User.objects.filter(
         following__user=request.user).prefetch_related('recipes').annotate(
         recipe_count=Count('recipes')).order_by('username')
@@ -146,9 +124,6 @@ def subscriptions(request):
 
 @login_required
 def favorites(request):
-    logger.error('This is favorites')
-    logger.error(request)
-    
     tags = request_tags(request)
     recipes = Recipe.objects.filter(
         favored_by__user=request.user, tags__title__in=tags
@@ -166,18 +141,12 @@ def favorites(request):
 
 @login_required
 def purchases(request):
-    logger.error('This is purchases')
-    logger.error(request)
-    
     recipes = request.user.purchases.all()
     return render(request, 'recipes/shop_list.html', {'recipes': recipes})
 
 
 @login_required
 def purchases_download(request):
-    logger.error('This is purchases_download')
-    logger.error(request)
-    
     title = 'recipe__ingredients__title'
     dimension = 'recipe__ingredients__dimension'
     quantity = 'recipe__ingredients_amounts__quantity'
@@ -198,7 +167,7 @@ def purchases_download(request):
             f'{ingredient[dimension]}\n'
         )
 
-    response = HttpResponse(text, content_type="text/plain")
+    response = HttpResponse(text, content_type='text/plain')
     filename = 'shopping_list.txt'
     response['Content-Disposition'] = f'attachment; filename={filename}'
     return response
