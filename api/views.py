@@ -21,9 +21,7 @@ class IngredientViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 class CreateDestroyViewSet(mixins.CreateModelMixin,
                            mixins.DestroyModelMixin,
                            viewsets.GenericViewSet):
-
-    def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
+    pass
 
 
 class SubscriptionViewSet(CreateDestroyViewSet):

@@ -9,14 +9,14 @@ from recipes.models import Recipe
 from recipes.models import Tag
 from recipes.utils import edit_recipe
 from recipes.utils import get_paginated_view
-from recipes.utils import request_tags
+from recipes.utils import get_request_tags
 from recipes.utils import save_recipe
 
 User = get_user_model()
 
 
 def index(request):
-    tags = request_tags(request)
+    tags = get_request_tags(request)
     recipes = Recipe.objects.filter(tags__title__in=tags).select_related(
         'author').prefetch_related('tags').distinct()
 
@@ -90,7 +90,7 @@ def recipe_view_slug(request, recipe_id, slug):
 
 
 def profile_view(request, username):
-    tags = request_tags(request)
+    tags = get_request_tags(request)
     author = get_object_or_404(User, username=username)
     author_recipes = author.recipes.filter(
         tags__title__in=tags).prefetch_related('tags').distinct()
@@ -124,7 +124,7 @@ def subscriptions(request):
 
 @login_required
 def favorites(request):
-    tags = request_tags(request)
+    tags = get_request_tags(request)
     recipes = Recipe.objects.filter(
         favored_by__user=request.user, tags__title__in=tags
     ).select_related('author').prefetch_related('tags').distinct()

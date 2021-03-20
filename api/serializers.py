@@ -20,7 +20,7 @@ class IngredientSerializer(ModelSerializer):
         model = Ingredient
 
 
-class SubscriptionSerializer(CurrentUserDefault, ModelSerializer):
+class SubscriptionSerializer(ModelSerializer):
     user = HiddenField(default=CurrentUserDefault())
 
     class Meta:
@@ -29,13 +29,13 @@ class SubscriptionSerializer(CurrentUserDefault, ModelSerializer):
         validators = (validate_author, )
 
 
-class FavoriteSerializer(CurrentUserDefault, ModelSerializer):
+class FavoriteSerializer(ModelSerializer):
     class Meta:
         fields = ('recipe',)
         model = Favorite
 
 
-class PurchaseSerializer(CurrentUserDefault, ModelSerializer):
+class PurchaseSerializer(ModelSerializer):
     class Meta:
         fields = ('recipe',)
         model = Purchase
