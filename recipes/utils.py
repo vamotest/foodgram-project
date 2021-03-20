@@ -15,7 +15,7 @@ def get_paginated_view(request, some_list):
     return page, paginator
 
 
-def request_tags(request):
+def get_request_tags(request):
     return request.GET.getlist('tag', ('breakfast', 'lunch', 'dinner'))
 
 
@@ -24,7 +24,7 @@ def get_ingredients(request):
     post = request.POST
     for key, name in post.items():
         if key.startswith('nameIngredient'):
-            num = key.split('_')[1]
+            num = key.partition('_')[-1]
             ingredients[name] = post[f'valueIngredient_{num}']
     return ingredients
 
