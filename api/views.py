@@ -1,8 +1,6 @@
 from rest_framework import filters, mixins, viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
-from api.models import Favorite
-from api.models import Subscription
 from api.serializers import FavoriteSerializer
 from api.serializers import IngredientSerializer
 from api.serializers import PurchaseSerializer
