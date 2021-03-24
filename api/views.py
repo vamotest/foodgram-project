@@ -25,17 +25,21 @@ class CreateDestroyViewSet(mixins.CreateModelMixin,
 
 
 class SubscriptionViewSet(CreateDestroyViewSet):
-    queryset = Subscription.objects.all()
     serializer_class = SubscriptionSerializer
     permission_classes = (IsAuthenticated, IsAuthorOrAdmin)
     lookup_field = 'author'
 
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
+
 
 class FavoriteViewSet(CreateDestroyViewSet):
-    queryset = Favorite.objects.all()
     serializer_class = FavoriteSerializer
     permission_classes = (AllowAny,)
     lookup_field = 'recipe'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
 
 
 class PurchaseViewSet(mixins.ListModelMixin, CreateDestroyViewSet):
