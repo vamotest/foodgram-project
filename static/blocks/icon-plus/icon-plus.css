@@ -5,6 +5,6 @@
     width: 24px;
     height: 24px;
     background-color: currentColor;
-    -webkit-mask-image: url("../images/plus.svg");
-    mask-image: url("../images/plus.svg");
+    -webkit-mask-image: url("../../images/plus.svg");
+    mask-image: url("../../images/plus.svg");
 }
