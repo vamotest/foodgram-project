@@ -8,6 +8,7 @@ services:
     restart: always
     volumes:
       - static_data:/usr/src/web/static/
+      - media_data:/usr/src/web/media/
       - nginx_config:/usr/src/web/nginx/
     env_file:
       - ./.env
@@ -28,8 +29,8 @@ services:
     restart: always
     container_name: nginx
     volumes:
-      - static_data:/usr/src/web/static
-      - ./media:/usr/src/web/media
+      - static_data:/usr/src/web/static/
+      - media_data:/usr/src/web/media/
       - nginx_config:/etc/nginx/conf.d
     ports:
       - 80:80
