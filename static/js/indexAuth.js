@@ -35,5 +35,3 @@ const cardList = new CardList(container, '.card', header, api, true, {
 });
 
 cardList.addEvent();
-
-

@@ -26,7 +26,6 @@ jobs:
     - name: Lint with flake8
       run: |
         flake8 .
-
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
@@ -71,10 +70,8 @@ jobs:
          else
            echo "$FILE does not exist"
          fi
-
          echo "Add new $FILE"
          touch $FILE
-
          echo DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }} >> $FILE
          echo DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }} >> $FILE
          echo DEFAULT_FROM_EMAIL=${{ secrets.DEFAULT_FROM_EMAIL }} >> $FILE
@@ -84,7 +81,6 @@ jobs:
          echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> $FILE
          echo DB_HOST=${{ secrets.DB_HOST }} >> $FILE
          echo DB_PORT=${{ secrets.DB_PORT }} >> $FILE
-
    - name: Check is docker install
      uses: appleboy/ssh-action@master
      with:
@@ -101,7 +97,6 @@ jobs:
              curl -fsSL https://get.docker.com -o get-docker.sh > /dev/null 2>&1
              sh get-docker.sh
          fi
-
    - name: Compose up
      uses: appleboy/ssh-action@master
      with:
@@ -128,8 +123,6 @@ jobs:
          sudo docker stop $(sudo docker ps -a -q) > /dev/null 2>&1
          sudo docker kill $(sudo docker ps -a -q) > /dev/null 2>&1
          sudo docker-compose up -d --force-recreate
-
-
    - name: Prepare django
      uses: appleboy/ssh-action@master
      with:
@@ -142,7 +135,6 @@ jobs:
          docker-compose exec -T web python3 manage.py collectstatic --noinput
          docker-compose exec -T web python3 manage.py migrate --noinput
          docker-compose exec -T web python3 manage.py loaddata fixture.json
-
    - name: Clean up
      uses: appleboy/ssh-action@master
      with:
@@ -155,8 +147,6 @@ jobs:
          sudo docker rmi $(docker images -q -f dangling=true) > /dev/null 2>&1
          sudo docker volume rm $(docker volume ls -qf dangling=true) > /dev/null 2>&1
          sudo docker system prune -f > /dev/null 2>&1
-
-
   send_message:
     runs-on: ubuntu-latest
     needs: deploy
